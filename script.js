@@ -39,6 +39,7 @@ function operate(x, y, op){
     operator = "";
     bufferNum = "";
 }
+
 function buttonClicked(e){
     let buttonText = e.target.innerText;
     if(!isNaN(buttonText) || buttonText === '.'){
@@ -47,6 +48,9 @@ function buttonClicked(e){
             screenNum = "";
             screen.value = screenNum;
             overwrite = false;
+        }
+        else if(buttonText === '.' && screenNum.includes('.')){
+            buttonText = '';
         }
         screenNum = screenNum.concat(buttonText);
         screen.value = screenNum;
@@ -78,14 +82,9 @@ function buttonClicked(e){
         }
         operator = buttonText;
     }
-    console.log(bufferNum);
-    console.log(operator);
-    console.log(screenNum);
-    console.log(overwrite);
 }
 
 function keyPressed(e){
-    console.log(e);
     buttons.forEach(button => {
         if(e.key == button.innerText){
             button.click();
