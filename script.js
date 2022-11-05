@@ -1,6 +1,7 @@
 const screen = document.querySelector(".screen");
 const buttons = document.querySelectorAll("button");
 buttons.forEach((button) => button.addEventListener("click", buttonClicked));
+window.addEventListener('keydown', keyPressed);
 
 let bufferNum = "";
 let operator = "";
@@ -61,7 +62,7 @@ function buttonClicked(e){
         screen.value = screenNum;
     }
     else if(buttonText === '='){
-        if(bufferNum != "" || bufferNum == 0){
+        if(bufferNum != "" || bufferNum == 0 && !overwrite){
             operate(bufferNum, screenNum, operator);
         }
     }
@@ -77,4 +78,32 @@ function buttonClicked(e){
         }
         operator = buttonText;
     }
+    console.log(bufferNum);
+    console.log(operator);
+    console.log(screenNum);
+    console.log(overwrite);
+}
+
+function keyPressed(e){
+    console.log(e);
+    buttons.forEach(button => {
+        if(e.key == button.innerText){
+            button.click();
+        }
+        else if(e.key == "Enter" && button.innerText == "="){
+            button.click();
+        }
+        else if(e.key == "/" && button.innerText == "÷"){
+            button.click();
+        }
+        else if(e.key == "*" && button.innerText == "x"){
+            button.click();
+        }
+        else if(e.key == "Backspace" && button.innerText == "Delete"){
+            button.click();
+        }
+        else if(e.key == "Escape" && button.innerText == "Clear"){
+            button.click();
+        }
+    });
 }
