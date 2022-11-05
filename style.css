@@ -40,7 +40,7 @@ body{
     margin-bottom: 1%;
 }
 .screen{
-    font-size: 5vmax;
+    font-size: 75pt;
     width: 100%;
     border-radius: 10px;
     text-align: right;
@@ -50,7 +50,7 @@ body{
     flex: 1;
 }
 button{
-    font-size: 3vmax;
+    font-size: 36pt;
     padding:0;
     margin:0;
     height: 100%;

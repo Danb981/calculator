@@ -19,7 +19,7 @@ function multiply(x, y){
 function divide(x, y){
     return x / y;
 }
-function operate(x, y, operator){
+function operate(x, y, op){
     if(operator === '+'){
         screenNum = add(x, y).toString();
     }
@@ -32,45 +32,53 @@ function operate(x, y, operator){
     else if(operator === '÷'){
         screenNum = divide(x, y).toString();
     }
-    bufferNum = "";
+    screenNum = (Math.round(screenNum * 100) / 100).toString();
+
+    screen.value = screenNum;
     operator = "";
+    bufferNum = "";
 }
 function buttonClicked(e){
     let buttonText = e.target.innerText;
     if(!isNaN(buttonText) || buttonText === '.'){
         if(overwrite){
-            overwrite = !overwrite;
+            bufferNum = screenNum;
             screenNum = "";
             screen.value = screenNum;
+            overwrite = false;
         }
-        screenNum += buttonText;
-    }
-    else if(buttonText === '='){
-        operate(bufferNum, screenNum, operator);
+        screenNum = screenNum.concat(buttonText);
+        screen.value = screenNum;
     }
     else if(buttonText === 'Clear'){
         bufferNum = "";
         operator = "";
         screenNum = "";
+        screen.value = screenNum;
     }
     else if(buttonText === 'Delete'){
         screenNum = screenNum.slice(0, screenNum.length - 1);
+        screen.value = screenNum;
     }
-    else{ //operation click
-        if(bufferNum != ""){
+    else if(buttonText === '='){
+        if(bufferNum != "" || bufferNum == 0){
+            operate(bufferNum, screenNum, operator);
+        }
+    }
+    else{ 
+        if(bufferNum != "" || bufferNum == 0 && !overwrite){
             operate(bufferNum, screenNum, operator);
             operator = buttonText;
+            overwrite = true;
+        }
+        else if(!overwrite){
             bufferNum = screenNum;
             overwrite = true;
         }
-        else{
-            bufferNum = screenNum;
-            screenNum = "";
-            operator = buttonText;
-        }
+        operator = buttonText;
     }
-    screen.value = screenNum;
     console.log({bufferNum});
     console.log({operator});
     console.log({screenNum});
+    console.log({overwrite});
 }
