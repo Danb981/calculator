@@ -77,8 +77,4 @@ function buttonClicked(e){
         }
         operator = buttonText;
     }
-    console.log({bufferNum});
-    console.log({operator});
-    console.log({screenNum});
-    console.log({overwrite});
 }
