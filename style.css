@@ -11,7 +11,9 @@ body{
 }
 .calculator{
     aspect-ratio: 2.5/3;
-    height: 60vh;
+    height: 50vh;
+    min-height: 500px;
+    min-width: 300px;
     background-color: gray;
     border-radius: 10px;
 
@@ -27,27 +29,32 @@ body{
     gap: 0.25%;
 }
 .row{
-    margin-left: 0.25%;
-    margin-right: 0.25%;
+    margin-left: 1%;
+    margin-right: 1%;
 
     display:flex;
     flex: 1;
     gap: 0.25%;
 }
+.row.bottom{
+    margin-bottom: 1%;
+}
 .screen{
-    font-size: 5vw;
+    font-size: 5vmax;
     width: 100%;
     border-radius: 10px;
     text-align: right;
-    margin-top: 0.25%;
+    margin-top: 1%;
     background-color: white;
 
     flex: 1;
 }
 button{
+    font-size: 3vmax;
+    padding:0;
+    margin:0;
     height: 100%;
     border-radius: 10px;
-    font-size: 5vw;
-
-    flex: 1;
+    
+    flex: 1 1 0;
 }
